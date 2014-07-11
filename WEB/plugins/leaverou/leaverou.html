@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head lang="zh-cn">
+    <meta charset="UTF-8">
+    <title>Lea Verou</title>
+    <link href="../../../lib/highlight/default.min.css" rel="stylesheet">
+    <link href="../../../lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../../css/global.css" rel="stylesheet">
+    <script src="../../../lib/highlight/highlight.min.js"></script>
+    <script src="../../../lib/jquery/jquery.min.js"></script>
+
+    <link href="css/leaverou.css" rel="stylesheet">
+</head>
+<body class="titlecolor">
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6 col-lg-push-3 text-center">
+            <h1>Lea Verou 实例</h1>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-lg-8 col-lg-push-2">
+            <h2>评分</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-8 col-lg-push-2">
+            <h3>html</h3>
+<pre><code class="scss hljs ">&lt;<span class="hljs-tag">div</span> class="rating"&gt;
+    &lt;<span class="hljs-tag">input</span> type="radio" id="star5" name="rating" value="5" /&gt;
+    &lt;<span class="hljs-tag">label</span> for="star5" <span class="hljs-tag">title</span>="Rocks!"&gt;5 stars&lt;/<span class="hljs-tag">label</span>&gt;
+    &lt;<span class="hljs-tag">input</span> type="radio" id="star4" name="rating" value="4" /&gt;
+    &lt;<span class="hljs-tag">label</span> for="star4" <span class="hljs-tag">title</span>="Pretty good"&gt;4 stars&lt;/<span class="hljs-tag">label</span>&gt;
+    &lt;<span class="hljs-tag">input</span> type="radio" id="star3" name="rating" value="3" /&gt;
+    &lt;<span class="hljs-tag">label</span> for="star3" <span class="hljs-tag">title</span>="Meh"&gt;3 stars&lt;/<span class="hljs-tag">label</span>&gt;
+    &lt;<span class="hljs-tag">input</span> type="radio" id="star2" name="rating" value="2" /&gt;
+    &lt;<span class="hljs-tag">label</span> for="star2" <span class="hljs-tag">title</span>="Kinda bad"&gt;2 stars&lt;/<span class="hljs-tag">label</span>&gt;
+    &lt;<span class="hljs-tag">input</span> type="radio" id="star1" name="rating" value="1" /&gt;
+    &lt;<span class="hljs-tag">label</span> for="star1" <span class="hljs-tag">title</span>="Sucks <span class="hljs-tag">big</span> <span class="hljs-tag">time</span>"&gt;1 star&lt;/<span class="hljs-tag">label</span>&gt;
+&lt;/<span class="hljs-tag">div</span>&gt;</code></pre>
+            <h3>css</h3>
+<pre><code class="css hljs">.rating {
+    float:left;
+}
+/* :not(:checked) is a filter, so that browsers that don’t support :checked don’t
+follow these rules. Every browser that supports :checked also supports :not(), so
+it doesn’t make the test unnecessarily selective */
+.rating:not(:checked) > input {
+    position:absolute;
+    /*top:-9999px;*/
+    clip:rect(0, 0, 0, 0);
+}
+.rating:not(:checked) > label {
+    float:right;
+    width:1em;
+    padding:0 .1em;
+    overflow:hidden;
+    white-space:nowrap;
+    cursor:pointer;
+    font-size:200%;
+    line-height:1.2;
+    color:#ddd;
+    text-shadow:1px 1px #bbb, 2px 2px #666, .1em .1em .2em rgba(0, 0, 0, .5);
+}
+.rating:not(:checked) > label:before {
+    content:'★ ';
+}
+.rating > input:checked ~ label {
+    color: #f70;
+    text-shadow:1px 1px #c60, 2px 2px #940, .1em .1em .2em rgba(0, 0, 0, .5);
+}
+.rating:not(:checked) > label:hover, .rating:not(:checked) > label:hover ~ label {
+    color: gold;
+    text-shadow:1px 1px goldenrod, 2px 2px #B57340, .1em .1em .2em rgba(0, 0, 0, .5);
+}
+.rating > input:checked + label:hover, .rating > input:checked + label:hover ~ label, .rating > input:checked ~ label:hover, .rating > input:checked ~ label:hover ~ label, .rating > label:hover ~ input:checked ~ label {
+    color: #ea0;
+    text-shadow:1px 1px goldenrod, 2px 2px #B57340, .1em .1em .2em rgba(0, 0, 0, .5);
+}
+.rating > label:active {
+    position:relative;
+    top:2px;
+    left:2px;
+}
+.rating *,.rating *:before,.rating *:after {
+    box-sizing:initial;
+}</code></pre>
+        <h3>JavaScript</h3>
+            <pre><code class="javascript hljs">$(function () {
+    $(".rating").on("click","input:radio",function( ev ){
+        alert(ev.target.value+"分");
+    })
+});</code></pre>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-8 col-lg-push-2">
+            <h3>示例：</h3>
+            <div class="rating">
+                <input type="radio" id="star5" name="rating" value="5" />
+                <label for="star5" title="Rocks!">5 stars</label>
+                <input type="radio" id="star4" name="rating" value="4" />
+                <label for="star4" title="Pretty good">4 stars</label>
+                <input type="radio" id="star3" name="rating" value="3" />
+                <label for="star3" title="Meh">3 stars</label>
+                <input type="radio" id="star2" name="rating" value="2" />
+                <label for="star2" title="Kinda bad">2 stars</label>
+                <input type="radio" id="star1" name="rating" value="1" />
+                <label for="star1" title="Sucks big time">1 star</label>
+            </div>
+        </div>
+    </div>
+</div>
+<footer></footer>
+</body>
+<script>
+    $(function () {
+        $(".rating").on("click","input:radio",function( ev ){
+            alert(ev.target.value+"分");
+        });
+        hljs.initHighlightingOnLoad();
+    });
+</script>
+</html>
